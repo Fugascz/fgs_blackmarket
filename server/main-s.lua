@@ -4,7 +4,7 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 RegisterNetEvent('fgs-blackmarket:buy')
 AddEventHandler('fgs-blackmarket:buy', function(label, item, price, count)
     local xPlayer = ESX.GetPlayerFromId(source)
-    if xPlayer.getMoney() > price then 
+    if (xPlayer.getMoney() - price) > price then 
         xPlayer.addWeapon(item, count)
         xPlayer.removeMoney(price)
         TriggerClientEvent('mythic_notify:client:SendAlert', source, {type = 'success', text = string.format('Zakoupil/a jste %s.', label) })
